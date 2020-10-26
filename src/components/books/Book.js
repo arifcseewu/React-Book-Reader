@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import BookImage from "./bookImage.jpg";
 
@@ -9,7 +10,7 @@ const Book = ({ book }) => {
     <div className="col">
       <div className="card h-100 w-100">
         <div className="card-body">
-          <img src={BookImage} className="" alt="Harry Potter Image" />
+          <img src={BookImage} alt="Harry Potter" />
           <h5>{id}</h5>
           <h5 className="card-title m-0">{title}</h5>
           <p className="lead text-muted">{author}</p>
@@ -24,7 +25,7 @@ const Book = ({ book }) => {
           </button>
 
           {showMore && (
-            <div className="mt-2">
+            <div className="mt-2 border-none">
               <ul className="list-group">
                 <li className="list-group-item">
                   <b>Email:</b>
@@ -38,9 +39,25 @@ const Book = ({ book }) => {
             </div>
           )}
         </div>
+        <div className="card-footer d-flex justify-content-between">
+          <Link
+            to={"/book/edit/" + id}
+            type="button"
+            className="btn btn-secondary btn-sm"
+          >
+            <i className="fas fa-pencil-alt" />
+            Edit book
+          </Link>
+          <button type="button" className="btn btn-danger btn-sm">
+            <i className="fas fa-trash" /> Remove book
+          </button>
+        </div>
       </div>
     </div>
   );
 };
+// Book.prototypes = {
+//   book: prototypes.object.isRequired,
+// };
 
 export default Book;
